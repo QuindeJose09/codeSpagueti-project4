@@ -1,6 +1,6 @@
 
 # SKELETON
-# DEPENDENCIAS -> express   dotenv  uuid    sequelize   "pg pg-hstore"  bcryp
+- DEPENDENCIAS -> express   dotenv  uuid    sequelize   "pg pg-hstore"  bcrypt
 - Express
 - Postgrest SQL
 - Sequelize ORM conection
@@ -14,4 +14,11 @@
 - Herramienta para publicar imagenes de perfil
 - CRUD de users, con autentication y manejo de permisos
 
-
+Orden
+1. app.js
+2. .env
+3. config.js 
+4. data base
+5. models
+6. initModels
+7. MVC -> controllers  services    router
