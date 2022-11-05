@@ -3,7 +3,7 @@ require('dotenv').config();
 
     const config = {
         port: process.env.PORT ,
-        nodeEnv: process.env.NODE_ENV ,     //? Desarrollo, Testing, Produccion
+        Env: process.env.NODE_ENV ,     //? Desarrollo, Testing, Produccion
 
         db: {
             type: process.env.DB_TYPE ,

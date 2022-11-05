@@ -14,7 +14,7 @@ const { comparePassword } = require('../utils/crypto')
 
             const verifyPassword = comparePassword(password , dataUsers.password)
         
-            if(verifyPassword){
+            if(verifyPassword) {
                 return dataUsers;
             }
 

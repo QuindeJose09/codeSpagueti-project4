@@ -11,6 +11,7 @@ const usersControllers = require('./users.controllers');
         })
     };
 
+    
     const getUserById =  (req,res) => {
         const id = req.params.id
         usersControllers.getUserById(id)
@@ -60,7 +61,7 @@ const usersControllers = require('./users.controllers');
             if(data[0]){
                 res.status(200).json( { message: `User with ID ${id}, edited succes.`})
             } else {
-                res.status(404).json({ message: 'Invalid ID.'})
+                res.status(404).json({ message: 'Invalid ID or mising data!'})
             }
         })
 
@@ -86,8 +87,8 @@ const usersControllers = require('./users.controllers');
         }); 
     }
 
-    //? My user Logeado -> services
-    
+
+    //? My user Logeado -> services     
     const getMyUser = (req, res) => {
         const id = req.user.id //!inf del tk desencryptado
         // id que sale de mi tk
@@ -100,6 +101,7 @@ const usersControllers = require('./users.controllers');
             })
             .catch(err => res.status(400).json({ message: err.message}))
     }
+    
     
     //!  firstName, lastName, phone, gender, country 
     const patchMyUser = (req, res) => {
@@ -115,7 +117,8 @@ const usersControllers = require('./users.controllers');
     };
 
 
-    const deleteMyUser = (req, res) => {
+const deleteMyUser = (req, res) => {
+            // user , existe solo si es protegida la ruta 
             const id = req.user.id;
         usersControllers.updateUsers(id, { status: 'inactive'})
             .then(() => {
@@ -132,5 +135,3 @@ module.exports = {
     deleteUser,
     getMyUser, patchMyUser, deleteMyUser
 }
-
-

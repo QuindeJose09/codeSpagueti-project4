@@ -11,7 +11,7 @@ const {hashPassword} = require('../utils/crypto')
         return data;
     };
 
-    //Obtener user por id
+    //Obtener user por id  - lo usamos en midleware, validar el tk del user
     const getUserById = async (idParams) => {
         const data = await Users.findOne({
             where: {
@@ -37,7 +37,7 @@ const {hashPassword} = require('../utils/crypto')
             // role: data.role ,    no va.
             // status: data.status ,  no va.
             // isVerified: data.isVerified  no va.
-     //! Le definimos valores por defecto para el user no haga lo que quiera.
+            //! Le definimos valores por defecto para el user no haga lo que quiera.
         })
         return newUser;
     }
@@ -62,8 +62,9 @@ const {hashPassword} = require('../utils/crypto')
         return data;
     }
 
-    //Obtener user por email
-    //  Investigar a que user 
+
+    //Obtener user por email    estafas piramidales.. youtube hackeado, 
+    //  Investigar a que user , para el user logueado.
     const getUserByEmail = async (email_params) => {
         const data = await Users.findOne({
             email:  email_params

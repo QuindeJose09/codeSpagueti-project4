@@ -1,13 +1,12 @@
+//* dependecies
 const router = require('express').Router();
 const passport = require('passport')
-
-require('../midleware/auth.midleware')(passport)
-    //? File
+//* file
 const usersServices = require('./users.services');
 
-    router.get('/',
-    passport.authenticate('jwt',{ session: false }), usersServices.getAllUsers)
+const adminValidate = require('../midleware/role.middleware');
 
+require('../midleware/auth.midleware')(passport);
 
     //?Ruta de inf propia del usuario logeado
     router.route('/me')
@@ -16,10 +15,13 @@ const usersServices = require('./users.services');
     .delete( passport.authenticate('jwt', {session: false}) , usersServices.deleteMyUser)
 
 
+    router
+        .get('/', passport.authenticate('jwt', { session: false }), usersServices.getAllUsers);
+
+
     router.route('/:id')
-    .get(usersServices.getUserById)
-    .patch(usersServices.patchUser)
-    .delete(usersServices.deleteUser);
+        .get(usersServices.getUserById)
+        .patch( passport.authenticate('jwt',{ session: false }), adminValidate  ,usersServices.patchUser)
+        .delete(passport.authenticate('jwt',{ session: false }), adminValidate ,usersServices.deleteUser);
 
 module.exports = router
- 

@@ -4,10 +4,8 @@ const bcrypt = require('bcrypt');
 
     //* Encripta la pass del usuario cuando se crea o se modifica el pass
     const hashPassword = (plainTextPassword) => {
-        return bcrypt.hashSync(plainTextPassword, 10);
-        //* se encripta varias veces
+        return bcrypt.hashSync(plainTextPassword, 10) // varias veces
     };
-
 
     const comparePassword = (plainTextPassword , hashedPassword) => {
         // Usado en un login, tomamos el pass del usuario y la comparamos con la que tenemos en BD
